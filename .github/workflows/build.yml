@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build
+      run: docker-compose up
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: target
+        path: target/*
